@@ -14,7 +14,7 @@ off_data = pd.read_csv('../../Data/OffensesData.csv')
 wea_data = pd.read_csv('../../Data/NOAAWeatherDataDIA.csv')
 liq_data = pd.read_csv('../../Data/LiquorLicenses.csv')
 
-#prepare an aggregate variable containing total active liquor licenses by district
+#prepare an aggregate variable containing total active liquor licenses by district and total offenses per day
 tot_dist_lic = liq_data['POLICE_DIST'].value_counts().sort_index()
 tot_daily_off = off_data['Occ Date'].value_counts().sort_index()
 
@@ -44,7 +44,7 @@ x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.3,random_state=
 linreg = linear_model.LinearRegression()
 linreg.fit(x_train,y_train)
 
-#print the R^2 of the linear regression model
+#show the distribution of observed response values, print the R^2 of the linear regression model, and show the residual plot resulting from model predictions
 sns.distplot(df['Total Offenses'])
 sns.plt.show()
 print 'Linear Regression Model Output'
