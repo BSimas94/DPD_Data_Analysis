@@ -21,10 +21,10 @@ tot_daily_off = off_data['Occ Date'].value_counts().sort_index()
 #put the appropriate external variables into the offenses dataset and keep only unique dates
 step1 = off_data.merge(wea_data,how='inner',left_on='Occ Date',right_on='DATE')
 step2 = pd.DataFrame({'District':tot_dist_lic.index,
-                                'Total Licenses':tot_dist_lic.values})
+                      'Total Licenses':tot_dist_lic.values})
 step3 = step1.merge(step2,on='District')
 step4 = pd.DataFrame({'Occ Date':tot_daily_off.index,
-                        'Total Offenses':tot_daily_off.values})
+                      'Total Offenses':tot_daily_off.values})
 step5 = step3.merge(step4,on='Occ Date')
 df = step5.drop_duplicates(['Occ Date'])
 
